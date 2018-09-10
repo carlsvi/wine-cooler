@@ -43,8 +43,9 @@
 #include "usart.h"
 #include "gpio.h"
 
-/* USER CODE BEGIN Includes */
+#include "WineCooler.hpp"
 
+/* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -63,7 +64,17 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+void uart_tx(uint8_t* buffer, uint8_t buffer_length) {
+	HAL_UART_Transmit(&huart1, buffer, buffer_length, HAL_MAX_DELAY);
+}
 
+uint8_t uart_rx(void) {
+	return 0;
+}
+
+void wine_cooler_task(void (*uart_tx)(uint8_t*, uint8_t), uint8_t (*uart_rx)(void)) {
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -99,22 +110,16 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim1);
-  HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
+  wine_cooler_task(uart_tx, uart_rx);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 

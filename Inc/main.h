@@ -55,6 +55,8 @@
 #define FAN_INT_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
+#define PELTIER_Pin GPIO_PIN_3
+#define PELTIER_GPIO_Port GPIOA
 #define FAN_EXT_Pin GPIO_PIN_5
 #define FAN_EXT_GPIO_Port GPIOA
 #define TEMP_OUT_Pin GPIO_PIN_6
